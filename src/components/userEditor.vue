@@ -65,8 +65,8 @@ export default {
     Bus.$on('toeditor', user => {
       this.user = user
       this.modalOn = !this.modalOn
-      this.introCount = this.user.introduction.length
-      this.nameCount = this.user.name.length
+      this.introCount = this.user ? this.user.introduction.length : 0
+      this.nameCount = this.user ? this.user.name.length : 0
     })
   },
   methods: {

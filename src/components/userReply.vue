@@ -59,7 +59,7 @@ export default {
           throw new Error(data.message)
         }
 
-        this.replies = data.data.filter(data => data.Tweet !== null)
+        this.replies = data.data ? data.data.filter(data => data.Tweet !== null) : []
 
         this.isLoading = false
       } catch (error) {

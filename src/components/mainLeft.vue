@@ -36,9 +36,9 @@ export default {
       this.$store.commit('revokeAuthentication')
       this.$router.push('/login')
     },
-    tweet(){
+    tweet () {
       Bus.$emit('totweet')
-    }
+    },
   }
 }
 </script>

@@ -2,9 +2,9 @@
   <div id="chatModal">
     <div id="rooms">
       <h5>聊天室列表</h5>
-      <div class="room" v-for="room in chatRooms" :key="room.id">
-        <img class="avatar" :src="room.avatar | emptyImage" alt="avatar">
-        <div class="name">{{room.name}}</div>
+      <div class="room" v-for="user in onlineUsers" :key="user.id">
+        <img class="avatar" :src="user.avatar | emptyImage" alt="avatar">
+        <div class="name">{{user.name}}</div>
       </div>
     </div>
     <div id="chatting">
@@ -33,6 +33,7 @@ import { emptyImageFilter, fromNowFilter } from './../utils/mixins'
 import Spinner from './../components/spinner'
 import { Toast } from '../utils/helpers'
 import chatAPI from './../apis/chat'
+import Bus from '../bus.js'
 
 export default {
   mixins: [emptyImageFilter, fromNowFilter],
@@ -43,6 +44,9 @@ export default {
     ...mapState(["currentUser", "isAuthenticated"])
   },
   created () {
+    this.joinChatRoom()
+    this.getChatRoomUsers()
+
     this.sockets.subscribe('public', (data) => {
         this.messages.push({
           id: data.id,
@@ -60,31 +64,21 @@ export default {
       message: "",
       messages: [],
       isLoading: true,
-      chatRooms: [
-        {
-          UserId: 1,
-          name: 'User1',
-          avatar: 'https://loremflickr.com/640/480/person?random=54&lock=372'
-        },
-        {
-          UserId: 2,
-          name: 'User2',
-          avatar: 'https://loremflickr.com/640/480/person?random=65&lock=618'
-        },
-        {
-          UserId: 3,
-          name: 'User3',
-          avatar: ''
-        },
-        {
-          UserId: 4,
-          name: 'User4',
-          avatar: ''
-        },
-      ],
+      onlineUsers: [],
     }
   },
   methods: {
+    joinChatRoom () {
+      this.$socket.emit('public-room-online',
+        this.currentUser.id,
+      )
+    },
+    getChatRoomUsers () {
+      this.sockets.subscribe('public-room-online', (data) => {
+        this.onlineUsers = data.onlineUsers
+        console.log('users received')
+      })
+    },
     sendMessage () {
       if (!this.message.trim()) {
         Toast.fire({

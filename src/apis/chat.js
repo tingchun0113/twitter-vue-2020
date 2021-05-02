@@ -1,7 +1,7 @@
-import { apiHelperChat } from './../utils/helpers'
+import { apiHelper } from './../utils/helpers'
 
 export default {
   getPublicChat () {
-    return apiHelperChat.get('/chat/public')
+    return apiHelper.get('/chat/public')
   }
 }

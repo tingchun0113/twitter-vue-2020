@@ -11,7 +11,6 @@ Vue.use(AxiosPlugin)
 
 Vue.use(
   new VueSocketIO({
-    // debug: true,
     vuex: {
       store,
       actionPrefix: 'SOCKET_',
@@ -22,17 +21,6 @@ Vue.use(
 )
 
 new Vue({
-  sockets: {
-    disconnect () {
-      console.log('disconnected')
-    },
-    connect_failed () {
-      console.log('failed')
-    },
-    connect () {
-      console.log('connected')
-    }
-  },
   router,
   store,
   render: h => h(App)
