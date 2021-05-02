@@ -45,9 +45,9 @@ export default {
   },
   created () {
     this.fetchUsers()
-    setInterval(() => {
-      this.fetchTweets()
-    }, 60000);
+    // setInterval(() => {
+    //   this.fetchTweets()
+    // }, 60000);
   },
   methods: {
     async fetchUsers () {

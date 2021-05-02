@@ -33,7 +33,6 @@ import { emptyImageFilter, fromNowFilter } from './../utils/mixins'
 import Spinner from './../components/spinner'
 import { Toast } from '../utils/helpers'
 import chatAPI from './../apis/chat'
-import Bus from '../bus.js'
 
 export default {
   mixins: [emptyImageFilter, fromNowFilter],
@@ -76,7 +75,6 @@ export default {
     getChatRoomUsers () {
       this.sockets.subscribe('public-room-online', (data) => {
         this.onlineUsers = data.onlineUsers
-        console.log('users received')
       })
     },
     sendMessage () {

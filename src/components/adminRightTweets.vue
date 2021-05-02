@@ -39,9 +39,9 @@ export default {
   },
   created () {
     this.fetchTweets()
-    setInterval(() => {
-      this.fetchTweets()
-    }, 60000);
+    // setInterval(() => {
+    //   this.fetchTweets()
+    // }, 60000);
   },
   methods: {
     async fetchTweets () {
@@ -85,7 +85,7 @@ export default {
         })
 
         this.fetchTweets()
-        
+
       } catch (error) {
         Toast.fire({
           icon: 'error',
