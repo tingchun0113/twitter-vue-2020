@@ -2,6 +2,7 @@
   <div id="chatModal">
     <div id="rooms">
       <h5>聊天室列表</h5>
+      <Spinner v-if="isLoading" />
       <div class="room" v-for="user in onlineUsers" :key="user.id">
         <img class="avatar" :src="user.avatar | emptyImage" alt="avatar">
         <div class="name">{{user.name}}</div>
@@ -44,6 +45,10 @@ export default {
   },
   created () {
     this.joinChatRoom()
+
+    this.sockets.subscribe('public-room-online', (data) => {
+        this.onlineUsers = data.onlineUsers
+    })
     this.getChatRoomUsers()
 
     this.sockets.subscribe('public', (data) => {
@@ -72,11 +77,6 @@ export default {
         this.currentUser.id,
       )
     },
-    getChatRoomUsers () {
-      this.sockets.subscribe('public-room-online', (data) => {
-        this.onlineUsers = data.onlineUsers
-      })
-    },
     sendMessage () {
       if (!this.message.trim()) {
         Toast.fire({
@@ -93,10 +93,25 @@ export default {
         this.message = ""
       }
     },
+    async getChatRoomUsers () {
+      try {
+        this.isLoading = true
+        const data = await chatAPI.getOnlineUsers()
+
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+
+        this.onlineUsers = data.data
+        this.isLoading = false
+      } catch (error) {
+        this.isLoading = false
+        console.error(error.message)
+      }
+    },
     async fetchMessages () {
       try {
         this.isLoading = true
-
         const data = await chatAPI.getPublicChat()
 
         if (data.status === 'error') {
@@ -104,7 +119,6 @@ export default {
         }
 
         const messagesData = data.data
-
         messagesData.map(d => {
           this.messages.push({
             id: d.id,
@@ -115,7 +129,6 @@ export default {
             avatar: d.avatar
           })
         })
-
         this.isLoading = false
       } catch (error) {
         this.isLoading = false
