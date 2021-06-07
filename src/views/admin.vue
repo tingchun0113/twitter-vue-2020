@@ -2,7 +2,7 @@
   <div class="loginframe">
     <div id="admin">
       <img class="logo" src="../../public/images/logo.png">
-      <h3 class="title">後台登入</h3>
+      <h3 class="title">Admin</h3>
       <form class="form" @submit.prevent.stop="login">
         <input
           inputmode="user"
@@ -10,23 +10,23 @@
           autocomplete="username"
           required
           autofocus
-          placeholder="帳號"
+          placeholder="Username"
         />
         <input
           type="password"
           v-model="password"
           autocomplete="current-password"
           required
-          placeholder="密碼"
+          placeholder="Password"
         />
         <button
           type="submit"
           class="button"
           :disabled="isProcessing"
           :class="{isProcessing}"
-        >登入</button>
+        >Log in</button>
       </form>
-      <router-link class="links" to="/login/">前台登入</router-link>
+      <router-link class="links" to="/login/">Simple Twitter</router-link>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
         if (!this.account || !this.password) {
           Toast.fire({
             icon: 'warning',
-            title: '請填入帳號和密碼'
+            title: 'Please fill in username and password'
           })
           return
         }
@@ -73,7 +73,7 @@ export default {
 
         Toast.fire({
           icon: 'warning',
-          title: '請確認您輸入了正確的帳號密碼'
+          title: 'Please check your username/password'
         })
         console.error(error.message)
       }
