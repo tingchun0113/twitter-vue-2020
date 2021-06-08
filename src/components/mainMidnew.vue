@@ -1,10 +1,10 @@
 <template>
   <div id="mainMidnew">
-    <h1 class="title">首頁</h1>
+    <h1 class="title">Home</h1>
     <form @submit.prevent.stop="handleSubmit">
       <textarea
         v-model="description"
-        placeholder="有什麼新鮮事？"
+        placeholder="What's happening?"
         @keydown.prevent.stop.enter.exact="handleSubmit"
         maxlength="140"
       >
@@ -14,7 +14,7 @@
         class="button"
         :disabled="isProcessing"
         :class="{isProcessing}"
-      >推文</button>
+      >Tweet</button>
     </form>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
         if (!this.description) {
           Toast.fire({
             icon: 'warning',
-            title: '您尚未填寫任何文字'
+            title: 'No character typed in'
           })
           return
         }
@@ -52,7 +52,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '新增推文成功'
+          title: 'Successfully tweeted'
         })
         this.isProcessing = false
         this.description = ''
@@ -62,7 +62,7 @@ export default {
 
         Toast.fire({
           icon: 'error',
-          title: '推文內容不能超過140字'
+          title: 'Only 140 characters allowed'
         })
         console.error(error.message)
       }

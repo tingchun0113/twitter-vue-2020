@@ -2,23 +2,23 @@
   <div id="mainLeft">
     <img class="logo" src="../../public/images/logo.png">
     <nav class="nav">
-      <router-link to="/main">首頁</router-link>
+      <router-link to="/main">Home</router-link>
       <router-link
         :to="{ name: 'others', params: { id: currentUser.id } }"
       >
-        個人資料
+        Profile
       </router-link>
       <router-link
         :to="{ name: 'chatRoom', params: { id: currentUser.id } }"
       >
-        聊天室
+        Chatroom
       </router-link>
-      <router-link :to="{ name: 'setting' }">設定</router-link>
+      <router-link :to="{ name: 'setting' }">Settings</router-link>
     </nav>
-    <div class="button" @click="tweet">新推文</div>
+    <div class="button" @click="tweet">Tweet</div>
     <div class="logout" @click="logout">
       <img src="../../public/images/logout.png">
-      <span>登出</span>
+      <span>Log out</span>
     </div>
   </div>
 </template>

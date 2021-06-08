@@ -1,7 +1,7 @@
 <template>
   <div id="chatModal">
     <div id="rooms">
-      <h5>聊天室列表</h5>
+      <h5>Chats</h5>
       <Spinner v-if="isLoading" />
       <div class="room" v-for="user in onlineUsers" :key="user.id">
         <img class="avatar" :src="user.avatar | emptyImage" alt="avatar">
@@ -19,7 +19,7 @@
         </div>
       </div>
       <form @submit.stop.prevent="sendMessage">
-        <input type="text" v-model="message" placeholder="輸入訊息">
+        <input type="text" v-model="message" placeholder="Aa">
         <button>
           <img src="../../public/images/send.png" alt="send">
         </button>
@@ -81,7 +81,7 @@ export default {
       if (!this.message.trim()) {
         Toast.fire({
           icon: "warning",
-          title: "請確認有輸入訊息"
+          title: "No message typed in chat"
         })
         this.message = ""
         return
@@ -134,7 +134,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得聊天訊息，請稍後再試'
+          title: 'Cannot get messages. Please wait for a moment'
         })
         console.error(error.message)
       }
