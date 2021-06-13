@@ -21,8 +21,8 @@
       <p class="description">{{ tweet ? tweet.description : ''}}</p>
       <div class="createTime">{{ tweet.createdAt | formatDate}}</div>
       <div class="count">
-        <div class="reply">{{ tweet ? tweet.replyCount : 0}} 回覆</div>
-        <div class="like">{{ tweet ? tweet.likeCount : 0}} 喜歡次數</div>
+        <div class="reply">{{ tweet ? tweet.replyCount : 0}} replies</div>
+        <div class="like">{{ tweet ? tweet.likeCount : 0}} likes</div>
       </div>
       <div class="icons">
         <img src="../../public/images/reply.png" @click="reply(tweet)">
@@ -54,7 +54,7 @@
               <span class="creatTime">·{{ reply.createdAt | fromNow}}</span>
             </div>
           </router-link>
-          <div class="replyAt">回覆 <span>@{{tweet ? tweet.name : 'Unknown'}}</span></div>
+          <div class="replyAt">replies to <span>@{{tweet ? tweet.name : 'Unknown'}}</span></div>
           <p class="description">{{ reply ? reply.comment : ''}}</p>
         </div>
       </div>
@@ -144,7 +144,7 @@ export default {
         if (!id) {
           Toast.fire({
             icon: 'warning',
-            title: '此推文不存在，無法按讚'
+            title: 'This tweet does not exist'
           })
           return
         }
@@ -155,7 +155,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已按讚此推文'
+          title: 'Liked'
         })
         this.tweet.isLiked = true
         this.tweet.likeCount++
@@ -163,7 +163,7 @@ export default {
       } catch(error) {
         Toast.fire({
           icon: 'warning',
-          title: '按讚失敗，請稍後再試'
+          title: 'Please wait for a moment'
         })
         this.isLikeClicked = false
         console.error(error.message)
@@ -178,7 +178,7 @@ export default {
         if (!id) {
           Toast.fire({
             icon: 'warning',
-            title: '此推文不存在，無法按讚'
+            title: 'This tweet does not exist'
           })
           return
         }
@@ -189,7 +189,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已取消按讚此推文'
+          title: 'Unliked'
         })
         this.tweet.isLiked = false
         this.tweet.likeCount--
@@ -197,7 +197,7 @@ export default {
       } catch(error) {
         Toast.fire({
           icon: 'warning',
-          title: '取消按讚失敗，請稍後再試'
+          title: 'Please wait for a moment'
         })
         this.isUnikeClicked = false
         console.error(error.message)

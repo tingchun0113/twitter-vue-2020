@@ -66,7 +66,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得會員資料，請稍後再試'
+          title: 'Cannot get user data. Please wait for a moment'
         })
         console.error(error.message)
       }

@@ -15,7 +15,7 @@
           <p>{{ like.description }}</p>
         </router-link>
         <div class="icons">
-          <div class="like">{{ like.likeCount }} 位喜歡</div>
+          <div class="like">{{ like.likeCount }} likes</div>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得按讚過的推文，請稍後再試'
+          title: 'Cannot get liked tweets. Please wait for a moment'
         })
         console.error(error.message)
       }

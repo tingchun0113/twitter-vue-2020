@@ -13,8 +13,8 @@
           <p>{{ tweet.description }}</p>
         </router-link>
         <div class="icons">
-          <div class="reply">{{ tweet.replyCount }} 則留言</div>
-          <div class="like">{{ tweet.likeCount }} 位喜歡</div>
+          <div class="reply">{{ tweet.replyCount }} replies</div>
+          <div class="like">{{ tweet.likeCount }} likes</div>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得推文，請稍後再試'
+          title: 'Cannot get tweets. Please wait for a moment'
         })
         console.error(error.message)
       }

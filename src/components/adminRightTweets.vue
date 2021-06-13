@@ -1,6 +1,6 @@
 <template>
   <div id="adminRIghtTweets">
-    <h3 class="title">推文清單</h3>
+    <h3 class="title">All Tweets</h3>
     <Spinner v-if="isLoading" />
     <div class="box">
       <div class="cards" v-for="tweet in tweets" :key="tweet.id">
@@ -60,7 +60,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得推文，請稍後再試'
+          title: 'Cannot get tweets. Please wait for a moment'
         })
         console.error(error.message)
       }
@@ -81,7 +81,7 @@ export default {
 
         Toast.fire({
           icon: 'success',
-          title: '刪除推文成功'
+          title: 'Tweet deleted successfully'
         })
 
         this.fetchTweets()
@@ -89,7 +89,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '無法刪除推文，請稍後再試'
+          title: 'Cannot delete this tweet. Please wait for a moment'
         })
         console.error(error.message)
       }

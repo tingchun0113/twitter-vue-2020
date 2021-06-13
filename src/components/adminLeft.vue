@@ -2,12 +2,12 @@
   <div id="adminLeft">
     <img class="logo" src="../../public/images/logo.png">
     <nav class="nav">
-      <router-link to="/admin_main/">推文清單</router-link>
-      <router-link to="/admin_user/">使用者列表</router-link>
+      <router-link to="/admin_main/">All Tweets</router-link>
+      <router-link to="/admin_user/">Users</router-link>
     </nav>
     <div class="logout" @click="logout">
       <img src="../../public/images/logout.png">
-      <span>登出</span>
+      <span>Log out</span>
     </div>
   </div>
 </template>

@@ -15,7 +15,7 @@
           <p>{{ reply.Tweet.description}}</p>
         </router-link>
         <div class="icons">
-          <div class="reply">{{ reply.Tweet.replyCount}} 則留言</div>
+          <div class="reply">{{ reply.Tweet.replyCount}} replies</div>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得回覆過的推文，請稍後再試'
+          title: 'Cannot get replied tweets. Please wait for a moment'
         })
         console.error(error.message)
       }
