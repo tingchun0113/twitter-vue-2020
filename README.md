@@ -1,6 +1,10 @@
 # A Simple Twitter Clone
 
 Demo: https://tingchun0113.github.io/twitter-vue-2020/#/main
+<br>
+
+<img src="/simpleTwitter.png" width=50%>
+
 
 ## Features ⚡️
 
