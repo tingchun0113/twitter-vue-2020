@@ -2,7 +2,7 @@
   <div class="loginframe">
     <div id="register">
       <img class="logo" src="../../public/images/logo.png">
-      <h3 class="title">建立您的帳號</h3>
+      <h3 class="title">Create a Twitter account</h3>
       <form class="form" @submit.prevent.stop="handleSubmit">
         <input
           inputmode="account"
@@ -10,44 +10,44 @@
           autocomplete="username"
           required
           autofocus
-          placeholder="帳號"
+          placeholder="Username"
         />
         <input
           inputmode="name"
           v-model="name"
           maxlength="25"
           required
-          placeholder="顯示名稱"
+          placeholder="Name"
         />
         <input
           inputmode="email"
           v-model="email"
           autocomplete="email"
           required
-          placeholder="電子信箱"
+          placeholder="Email"
         />
         <input
           type="password"
           v-model="password"
           autocomplete="new-password"
           required
-          placeholder="密碼"
+          placeholder="Password"
         />
         <input
           type="password"
           v-model="checkPassword"
           autocomplete="new-password"
           required
-          placeholder="密碼確認"
+          placeholder="Confirm password"
         />
         <button
           type="submit"
           class="button"
           :disabled="isProcessing"
           :class="{isProcessing}"
-        >註冊</button>
+        >Register</button>
       </form>
-      <router-link class="cancle" to="/login">取消</router-link>
+      <router-link class="cancle" to="/login">Cancel</router-link>
     </div>
   </div>
 </template>
@@ -79,14 +79,14 @@ export default {
         ) {
           Toast.fire({
             icon: 'warning',
-            title: '請確認已填寫所有欄位'
+            title: 'Please fill in all fields'
           })
           return
         }
         if (this.password !== this.checkPassword) {
           Toast.fire({
             icon: 'warning',
-            title: '兩次輸入的密碼不同'
+            title: 'Passwords did not match'
           })
           this.checkPassword = ''
           return
@@ -114,7 +114,7 @@ export default {
 
         Toast.fire({
           icon: 'warning',
-          title: '無法註冊 - 帳號已註冊過'
+          title: 'This account has been registered'
         })
         console.error(error.message)
       }

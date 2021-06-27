@@ -1,7 +1,7 @@
 <template>
   <div id="mainRightFollow">
     <div class="box">
-      <div class="title">我要跟隨誰</div>
+      <div class="title">Who to follow</div>
       <Spinner v-if="isLoading" />
       <div class="card" v-for="follower in followers" :key="follower.id">
         <router-link :to="{ name: 'others', params: { id: follower.id } }">
@@ -13,12 +13,12 @@
           </router-link>
           <div class="at">@{{follower.account}}</div>
           <div class="switch">
-            <div class="on" v-show="follower.isFollowed" @click="handleUnfollow(follower.id)">取消跟隨</div>
-            <div class="off" v-show="!follower.isFollowed" @click="handleFollow(follower.id)">跟隨</div>
+            <div class="on" v-show="follower.isFollowed" @click="handleUnfollow(follower.id)">Unfollow</div>
+            <div class="off" v-show="!follower.isFollowed" @click="handleFollow(follower.id)">Follow</div>
           </div>
         </div>
       </div>
-      <router-link class="button" :to="{ name: 'followers', params: { id: currentUserId } }">顯示更多</router-link>
+      <router-link class="button" :to="{ name: 'followers', params: { id: currentUserId } }">Show more</router-link>
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已跟隨此使用者'
+          title: 'Following this user'
         })
         const index = this.followers.findIndex(follower => follower.id === id)
         this.followers[index].isFollowed = true
@@ -94,7 +94,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '跟隨失敗，請稍後再試'
+          title: 'Failed to follow. Please wait for a moment'
         })
         this.isClickedFollow = false
         console.error(error.message)
@@ -114,7 +114,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已取消跟隨此使用者'
+          title: 'Unfollowed this user'
         })
         const index = this.followers.findIndex(follower => follower.id === id)
         this.followers[index].isFollowed = false
@@ -125,7 +125,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '取消跟隨失敗，請稍後再試'
+          title: 'Failed to unfollow. Please wait for a moment'
         })
         this.isClickedUnfollow = false
         console.error(error.message)

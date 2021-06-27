@@ -1,9 +1,9 @@
 <template>
   <div id="setting">
-    <h1 class="title">帳戶設定</h1>
+    <h1 class="title">Settings</h1>
     <form @submit.prevent.stop="handleSubmit">
       <div class="group">
-        <label for="account">帳號</label>
+        <label for="account">Username</label>
         <input
           inputmode="account"
           v-model="setting.account"
@@ -12,7 +12,7 @@
           id="account">
       </div>
       <div class="group">
-        <label for="name">名稱</label>
+        <label for="name">Name</label>
         <input
           inputmode="name"
           v-model="setting.name"
@@ -28,7 +28,7 @@
           id="email">
       </div>
       <div class="group">
-        <label for="password">密碼</label>
+        <label for="password">Password</label>
         <input
           type="password"
           v-model="setting.password"
@@ -36,7 +36,7 @@
           id="password">
       </div>
       <div class="group">
-        <label for="checkPassword">密碼確認</label>
+        <label for="checkPassword">Confirm password</label>
         <input
           type="password"
           v-model="setting.checkPassword"
@@ -48,7 +48,7 @@
         class="button"
         :disabled="isProcessing"
         :class="{isProcessing}"
-      >送出</button>
+      >Submit</button>
     </form>
   </div>
 </template>
@@ -94,7 +94,7 @@ export default {
 
         Toast.fire({
           icon: 'success',
-          title: '更新帳戶設定成功'
+          title: 'Successfully updated'
         })
 
         try {
@@ -116,7 +116,7 @@ export default {
 
         Toast.fire({
           icon: 'error',
-          title: '無法更新'
+          title: 'Cannot update profile. Please wait for a moment'
         })
         console.error(error.message)
       }

@@ -11,13 +11,13 @@
             <span class="creatTime">·{{ tweet.createdAt | fromNow}}</span>
           </div>
           <p class="description">{{ tweet.description }}</p>
-          <div class="tweetAt">回覆給 <span>@{{tweet.name}}</span></div>
+          <div class="tweetAt">Reply to <span>@{{tweet.name}}</span></div>
         </div>
       </div>
       <form>
         <textarea
           v-model="comment"
-          placeholder="推你的回覆"
+          placeholder="Tweet your reply"
           @keydown.prevent.stop.enter.exact="replyTweet"
         >
         </textarea>
@@ -26,7 +26,7 @@
           class="button"
           :disabled="isProcessing"
           :class="{isProcessing}"
-        >回覆</button>
+        >Reply</button>
         <div class="close" @click.self="closeModal()">×</div>
       </form>
     </div>
@@ -62,12 +62,12 @@ export default {
     closeModal(){
       if(this.comment){
         Toast.fire({
-          title: '儲存變更?',
+          title: 'Save Tweet?',
           position: 'center',
           showDenyButton: true,
           showConfirmButton: true,
-          confirmButtonText: `儲存`,
-          denyButtonText: `取消儲存`,
+          confirmButtonText: `Save`,
+          denyButtonText: `Discard`,
           timer: undefined
         }).then(result => {
           if (result.isConfirmed) {
@@ -86,7 +86,7 @@ export default {
         if (!this.comment) {
           Toast.fire({
             icon: 'warning',
-            title: '請確認已填寫回覆內容'
+            title: 'No character typed in'
           })
           return
         }
@@ -104,7 +104,7 @@ export default {
 
         Toast.fire({
           icon: 'success',
-          title: '新增回覆成功'
+          title: 'Successfully tweeted'
         })
         this.isProcessing = false
         this.modalOn = !this.modalOn
@@ -115,7 +115,7 @@ export default {
 
         Toast.fire({
           icon: 'warning',
-          title: '無法回覆推文'
+          title: 'Cannot tweet your reply. Please wait for a moment'
         })
         console.error(error.message)
       }

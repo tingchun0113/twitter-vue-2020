@@ -1,7 +1,7 @@
 <template>
   <div id="userEditor" v-show="modalOn" @click.self="closeModal()">
     <div class="form">
-      <h3>編輯個人資料</h3>
+      <h3>Edit profile</h3>
       <div class="image">
         <div class="cover" :style="'background-image: url('+ user.cover || emptyImage +')'">
           <img src="../../public/images/camera-add.png" @click="changeCover(user)">
@@ -12,7 +12,7 @@
       </div>
       <form @submit.prevent.stop="handleSubmit(user)">
         <div class="input-group">
-          <label for="name">名稱</label>
+          <label for="name">Name</label>
           <input
             type="text"
             id="name"
@@ -22,7 +22,7 @@
           <div class="length">{{nameCount}}/50</div>
         </div>
         <div class="input-group">
-          <label for="intro">自我介紹</label>
+          <label for="intro">Bio</label>
           <textarea
             v-model="user.introduction"
             id="intro"
@@ -38,7 +38,7 @@
           class="button"
           :disabled="isProcessing"
           :class="{isProcessing}"
-        >儲存</button>
+        >Save</button>
         <div class="close" @click.self="closeModal()">×</div>
       </form>
     </div>
@@ -90,7 +90,7 @@ export default {
 
         Toast.fire({
           icon: 'success',
-          title: '更新個人資料成功'
+          title: 'Successfully updated'
         })
         this.modalOn = !this.modalOn
         this.isProcessing = false
@@ -99,14 +99,14 @@ export default {
 
         Toast.fire({
           icon: 'error',
-          title: '無法更新'
+          title: 'Cannot update profile. Please wait for a moment'
         })
         console.error(error.message)
       }
     },
     changeCover(user){
       Toast.fire({
-        title: '輸入封面網址',
+        title: 'Please enter a valid URL',
         input: 'text',
         timer: undefined,
         position: 'center',
@@ -121,7 +121,7 @@ export default {
     },
     changeAvatar(user){
       Toast.fire({
-        title: '輸入大頭貼網址',
+        title: 'Please enter a valid URL',
         input: 'text',
         timer: undefined,
         position: 'center',

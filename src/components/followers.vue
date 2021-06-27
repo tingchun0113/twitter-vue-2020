@@ -2,8 +2,8 @@
   <div id="follow">
     <div class="links">
       <a @click="$router.go(-1)">←</a>
-      <div :class="{filter:filter}" @click="fetchFollowingUsers(userId)">正在跟隨</div>
-      <div :class="{filter:!filter}" @click="fetchFollowers(userId)">跟隨者</div>
+      <div :class="{filter:filter}" @click="fetchFollowingUsers(userId)">Following</div>
+      <div :class="{filter:!filter}" @click="fetchFollowers(userId)">Followers</div>
     </div>
     <Spinner v-if="isLoading" />
 
@@ -25,8 +25,8 @@
         <p class="article">{{ tweet.introduction }}</p>
       </div>
       <div class="switch">
-        <div class="on" v-show="tweet.isFollowed && currentUser.id == userId" @click="handleUnfollow(tweet.followingId || tweet.followerId)">取消跟隨</div>
-        <div class="off" v-show="!tweet.isFollowed && currentUser.id == userId" @click="handleFollow(tweet.followerId)">跟隨</div>
+        <div class="on" v-show="tweet.isFollowed && currentUser.id == userId" @click="handleUnfollow(tweet.followingId || tweet.followerId)">Unfollow</div>
+        <div class="off" v-show="!tweet.isFollowed && currentUser.id == userId" @click="handleFollow(tweet.followerId)">Follow</div>
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得正在跟隨的使用者，請稍後再試'
+          title: 'Cannot get users. Please wait for a moment'
         })
         console.error(error.message)
       }
@@ -107,7 +107,7 @@ export default {
         this.isLoading = false
         Toast.fire({
           icon: 'error',
-          title: '無法取得跟隨者資料，請稍後再試'
+          title: 'Cannot get followers. Please wait for a moment'
         })
         console.error(error.message)
       }
@@ -125,7 +125,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已跟隨此使用者'
+          title: 'Following this user'
         })
         const index = this.tweets.findIndex(followship => followship.followerId === id)
         this.tweets[index].isFollowed = true
@@ -133,7 +133,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '跟隨失敗，請稍後再試'
+          title: 'Failed to follow. Please wait for a moment'
         })
         this.isClickedFollow = false
         console.error(error.message)
@@ -152,7 +152,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已取消跟隨此使用者'
+          title: 'Unfollowed this user'
         })
         const index = this.tweets.findIndex(followship => followship.followingId === id || followship.followerId === id)
         this.tweets[index].isFollowed = false
@@ -163,7 +163,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '取消跟隨失敗，請稍後再試'
+          title: 'Failed to unfollow. Please wait for a moment'
         })
         this.isClickedUnfollow = false
       }

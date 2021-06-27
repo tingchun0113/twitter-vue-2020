@@ -30,5 +30,5 @@ export default {
   },
   putProfile ({ userId, profile }) {
     return apiHelper.put(`/users/${userId}`, profile)
-  },
+  }
 }

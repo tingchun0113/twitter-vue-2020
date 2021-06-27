@@ -2,28 +2,28 @@
   <div id="userTop">
     <!-- <Spinner v-if="isLoading" /> -->
     <router-link class="links" v-show="currentUser.id != userId" to="/main/">
-      ← 首頁
+      ← Home
     </router-link>
     <div class="image">
       <img class="cover" :src="user.cover | emptyImage" alt="user.cover">
       <img class="avatar" :src="user.avatar | emptyImage" alt="user.avatar">
     </div>
     <div class="button">
-      <div @click="editor(user)" v-if="currentUser.id == userId">編輯個人資料</div>
+      <div @click="editor(user)" v-if="currentUser.id == userId">Edit profile</div>
       <template v-if="currentUser.id != userId">
         <div
           v-show="user.isFollowed"
           @click="handleUnfollow(user.id)"
           class="on"
         >
-          取消跟隨
+          Unfollow
         </div>
         <div
           v-if="!user.isFollowed"
           @click="handleFollow(user.id)"
           class="off"
         >
-          跟隨
+          Follow
         </div>
       </template>
     </div>
@@ -33,23 +33,23 @@
       </div>
       <div class="intro">{{user.introduction}}</div>
       <div class="follow">
-        <div>{{user.tweetCount}} 則推文</div>
+        <div>{{user.tweetCount}} Tweets</div>
         <div class="following">
           <router-link :to="{ name: 'followers', params: { id: userId } }">
-            {{user.followingCount}} 位正在跟隨
+            {{user.followingCount}} Following
           </router-link>
         </div>
         <div class="follower">
           <router-link :to="{ name: 'followers', params: { id: userId } }">
-            {{user.followerCount}} 位跟隨者
+            {{user.followerCount}} Followers
           </router-link>
         </div>
       </div>
     </div>
     <div class="filter">
-      <div :class="{tweet:links == 'tweet'}" @click="tweet">我的推文</div>
-      <div :class="{reply:links == 'reply'}" @click="reply">我的回覆</div>
-      <div :class="{like:links == 'like'}" @click="like">喜歡的內容</div>
+      <div :class="{tweet:links == 'tweet'}" @click="tweet">Tweets</div>
+      <div :class="{reply:links == 'reply'}" @click="reply">Replies</div>
+      <div :class="{like:links == 'like'}" @click="like">Likes</div>
     </div>
   </div>
 </template>
@@ -163,7 +163,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已跟隨此使用者'
+          title: 'Following this user'
         })
         Bus.$emit('chanFollow')
         this.user.isFollowed = true
@@ -171,7 +171,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '跟隨失敗，請稍後再試'
+          title: 'Failed to follow. Please wait for a moment'
         })
         this.isClickedFollow = false
         console.error(error.message)
@@ -190,7 +190,7 @@ export default {
         }
         Toast.fire({
           icon: 'success',
-          title: '已取消跟隨此使用者'
+          title: 'Unfollowed this user'
         })
         Bus.$emit('chanFollow')
         this.user.isFollowed = false
@@ -198,7 +198,7 @@ export default {
       } catch (error) {
         Toast.fire({
           icon: 'error',
-          title: '取消跟隨失敗，請稍後再試'
+          title: 'Failed to unfollow. Please wait for a moment'
         })
         this.isClickedUnfollow = false
       }
