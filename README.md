@@ -2,6 +2,8 @@
 
 Demo: https://tingchun0113.github.io/twitter-vue-2020/#/main
 <br>
+專案介紹: https://tingchun0113.medium.com/a-simple-twitter-clone-cd0f07be0478
+<br>
 
 <img src="/simpleTwitter.png" width=50%>
 
